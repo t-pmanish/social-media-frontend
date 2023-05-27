@@ -118,11 +118,16 @@ axiosClient.interceptors.response.use(
 
     // now AT expires
     // call refresh API
-    if (statusCode === 401) {
+    if (statusCode === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
       // silently
       // generate new AT from calling refresh token api
 
-      const response = await axiosClient.get("/auth/refresh");
+      const response = await axios
+        .create({
+          withCredentials: true,
+        })
+        .get(`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`);
       // refesh token it get from cookies itself
       // using RT it send new access token to us
       // in refesh api call also get error -> because RT expires
@@ -134,14 +139,14 @@ axiosClient.interceptors.response.use(
       // refresh api done with it work
       // if status ok mean we got the new acces token
 
-      if (response.status === "ok") {
+      if (response.data.status === "ok") {
         // setting new AT to localStorage
-        setItem(KEY_ACCESS_TOKEN, response.rejult.new_access_token);
+        setItem(KEY_ACCESS_TOKEN, response.data.rejult.new_access_token);
 
         // load new acces token into original request and call origial request
         originalRequest.headers[
           "Authorization"
-        ] = `Bearer ${response.rejult.new_access_token}`;
+        ] = `Bearer ${response.data.rejult.new_access_token}`;
 
         // call actoal original request
         return axios(originalRequest);
