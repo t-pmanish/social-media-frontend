@@ -1,0 +1,45 @@
+.feed{
+
+    .container{
+        display: flex;
+        overflow: hidden;
+
+        .leftPart{
+            flex: 3;
+            // border: 1px solid lightblue;
+            max-height: 90vh;
+            padding-block: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            overflow-y: auto;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+         
+        }
+        .rightPart{
+            flex: 1;
+            // border: 1px solid lightgreen;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 2rem;
+
+            .followings{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .toFollow{
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .title{
+                text-decoration: underline;
+            }
+
+        }
+    }
+}

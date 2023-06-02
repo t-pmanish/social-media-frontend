@@ -17,3 +17,59 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root{
+  --border-color:#ddd;
+  --accent-color:#458eff;
+
+}
+
+h1,h2,h3,h4,h5,h6{
+  color:#212121;
+}
+
+h3 , h6{
+  font-weight: 400;
+}
+
+
+p{
+  color: #555;
+  font-size: .9rem;
+}
+
+.hover-link{
+  cursor: pointer;
+}
+
+.hover-link:active{
+  color: var(--accent-color);
+}
+
+.btn-primary{
+  padding: .7rem 1.2rem;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: bold;
+  border: none;
+}
+.btn-primary:hover{
+  background-color: #3174d8;
+}
+.btn-secondary{
+  padding: .7rem 1.2rem;
+  outline: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  border: none;
+  font-weight: bold;
+  background: none;
+  transition: all 0.9s;
+}
+.btn-secondary:hover{
+  background-color: var(--accent-color);
+  color: white;
+}
+.container{
+  max-width: 960px;
+  margin-inline: auto;
+}

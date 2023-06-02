@@ -1,0 +1,76 @@
+.updateProfile{
+
+    .container{
+
+        display: flex;
+        margin-top: 2rem;
+        
+
+        .leftPart{
+            flex: 1;
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem;
+
+            .userImg{
+                width: 260px;
+                height: 260px;
+                border-radius: 50%;
+            }
+        }
+        .rightPart{
+            flex: 2;
+            // border: 1px solid var(--border-color);
+            // border-radius: 5px;
+            padding-inline: 20px;
+
+            form{
+                margin-top: 3.2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+
+                input{
+                  outline: none;
+                    padding:.8rem 1rem ;
+                    border: 1px solid var(--border-color);
+                }
+                .updateBtn{
+                    // display: block;
+                    // margin: auto;
+                    // width: 50%;
+                }
+            }
+
+            .deleteProfile{
+                margin-top: 6rem;
+                display: flex;
+                justify-content: flex-end;
+
+                .deleteProfileBtn{
+                    padding: .8rem 1rem;
+                    outline: none;
+                    background-color: rgb(240, 8, 8);
+                    color: rgb(250, 249, 249);
+                    border: none;
+                    // font-weight: bold;
+                    transition: all 0.5s;
+
+                }
+                .deleteProfileBtn:hover{
+                    border: 1px solid red;
+                    background: none;
+                    color: red;
+                   
+
+                }
+            }
+
+        }
+
+
+    }
+}

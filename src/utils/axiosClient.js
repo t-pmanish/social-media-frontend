@@ -11,7 +11,8 @@ import {
   setItem,
 } from "./localStorageManager";
 
-//this will used to call any api
+//this will used to call any api -> thins one is global axios client
+// single time setup
 export const axiosClient = axios.create({
   baseURL: process.env.REACT_APP_SERVER_BASE_URL, // always  -> actually write in envirnment variable // backend base url
   withCredentials: true, // for cookies sent
@@ -99,6 +100,7 @@ axiosClient.interceptors.response.use(
     // refresh Api sends 401 means -> logout -> RT expires
 
     // when refesh token expires and user sent to login page
+    // 401 is issue of authentication
     if (
       statusCode === 401 &&
       originalRequest.url ===
@@ -123,9 +125,10 @@ axiosClient.interceptors.response.use(
       // silently
       // generate new AT from calling refresh token api
 
+      // can't use axioClient
       const response = await axios
         .create({
-          withCredentials: true,
+          withCredentials: true, // cookies pass ho rhii heah
         })
         .get(`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`);
       // refesh token it get from cookies itself
@@ -148,7 +151,7 @@ axiosClient.interceptors.response.use(
           "Authorization"
         ] = `Bearer ${response.data.rejult.new_access_token}`;
 
-        // call actoal original request
+        // call actual original request
         return axios(originalRequest);
       }
     }

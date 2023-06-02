@@ -1,0 +1,36 @@
+.navbar{
+    height:60px ;
+    border-bottom: 1px solid var(--border-color);
+    .container{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .rightSide{
+        
+            padding: .45rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.4rem;
+
+            .profile{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .logout{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .logoutIcon{
+                    font-size: 1.9rem;
+                }
+            }
+        }
+    }
+}

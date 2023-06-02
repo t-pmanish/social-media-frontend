@@ -1,25 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./Home.scss";
-import { axiosClient } from "../../utils/axiosClient";
+import {Outlet} from 'react-router-dom'
+import Navbar from "../../components/Navbar/Navbar";
 
 function Home() {
+  return <>
 
-  useEffect(() => {
-    fetchData()
-  }, []);
+    <Navbar/>
 
-  async function fetchData() {
-    try {
-      const response = await axiosClient.get("/posts/all");
-      console.log("from home (main axios)- ", response);
-      
-    } catch (error) {
-      console.log('home.js error - ',error);
-    }
-  }
-
-
-  return <div>Home</div>;
+    <Outlet />
+  </>;
 }
 
 export default Home;
