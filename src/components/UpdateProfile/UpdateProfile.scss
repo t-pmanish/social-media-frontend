@@ -8,18 +8,47 @@
 
         .leftPart{
             flex: 1;
-            border: 1px solid var(--border-color);
+            // border: 3px dashed var(--border-color);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 3rem;
 
-            .userImg{
-                width: 260px;
-                height: 260px;
-                border-radius: 50%;
+
+            .input-user-img{
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                .labelImg{
+                    width: 260px;
+                    height: 260px;
+                    border-radius: 50%;
+                    border: 1px dashed var(--border-color);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        object-fit: cover;
+                    }
+                }
+                .inputImg{
+                    display: none;
+                }
+
+
             }
+            // .userImg{
+            //     width: 260px;
+            //     height: 260px;
+            //     border-radius: 50%;
+            // }
         }
         .rightPart{
             flex: 2;

@@ -101,6 +101,8 @@ axiosClient.interceptors.response.use(
 
     // when refesh token expires and user sent to login page
     // 401 is issue of authentication
+
+    /*
     if (
       statusCode === 401 &&
       originalRequest.url ===
@@ -117,6 +119,7 @@ axiosClient.interceptors.response.use(
 
       return Promise.reject(error);
     }
+    */
 
     // now AT expires
     // call refresh API
@@ -142,7 +145,7 @@ axiosClient.interceptors.response.use(
       // refresh api done with it work
       // if status ok mean we got the new acces token
 
-      if (response.data.status === "ok") {
+      if (response.data.status === 'ok') {
         // setting new AT to localStorage
         setItem(KEY_ACCESS_TOKEN, response.data.rejult.new_access_token);
 
@@ -153,6 +156,14 @@ axiosClient.interceptors.response.use(
 
         // call actual original request
         return axios(originalRequest);
+      } else {
+        // if it also gives error then
+
+        // remove AT from local storage
+        removeItem(KEY_ACCESS_TOKEN);
+        // now reload page sents user to login page-> also navigate method of react can be used
+        window.location.replace("/login", "_self");
+        return Promise.reject(error);
       }
     }
 

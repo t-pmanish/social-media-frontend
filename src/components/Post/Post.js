@@ -1,35 +1,55 @@
-import React from 'react'
-import './Post.scss'
-import Avatar from '../Avatar/Avatar'
-import postImg3  from './../../assests/nature2.avif'
-import {AiOutlineHeart} from 'react-icons/ai'
+import React from "react";
+import "./Post.scss";
+import Avatar from "../Avatar/Avatar";
+import postImg3 from "./../../assests/nature2.avif";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { likeAndUnlikePost } from "../../redux/slices/postSlice";
+import { useNavigate } from "react-router-dom";
 
-function Post({post}) {
+function Post({ post }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  async function handlePostLike() {
+    dispatch(likeAndUnlikePost({ postId: post?._id }));
+  }
   return (
-    <div className='post'>
-        <div className="heading">
-            <Avatar />
-            <h4>Anuj kumar Sharma</h4>
+    <div className="post">
+      <div
+        className="heading hover-link"
+        onClick={() => navigate(`/profile/${post.owner._id}`)}
+      >
+        <Avatar src={post?.owner?.avatar?.url} />
+        <h4>{post?.owner?.name}</h4>
+      </div>
+      <div className="content">
+        <img
+          src={post?.image?.url ? post?.image?.url : postImg3}
+          alt="post img"
+        />
+      </div>
+      <div className="footer">
+        <div className="like">
+          <div className="likesCount hover-link" onClick={handlePostLike}>
+            {post?.isLiked ? (
+              <AiFillHeart className="likeIcon hover-link filled" />
+            ) : (
+              <AiOutlineHeart className="likeIcon hover-link " />
+            )}
+
+            <h4>{post?.likesCount} likes</h4>
+          </div>
+          <div className="postTime">
+            <p> {post?.timeAgo}</p>
+          </div>
         </div>
-        <div className="content">
-            <img src={postImg3} alt="post img" />
+        <div className="postCaption">
+          <p>{post?.caption}</p>
         </div>
-        <div className="footer">
-            <div className="like">
-                <div className='likesCount'>
-                    <AiOutlineHeart className='likeIcon hover-link'/>
-                    <h4>4 likes</h4>
-                </div>
-                <div className="postTime">
-                    <p>01-06-2023</p>
-                </div>
-            </div>
-            <div className="postCaption">
-                <p>Nature is a wondrous tapestry of beauty and balance, captivating our senses and nourishing our souls. It encompasses the vast landscapes, vibrant flora, and diverse fauna that surround us. From towering mountains to serene forests. </p>
-            </div>
-        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default Post
+export default Post;

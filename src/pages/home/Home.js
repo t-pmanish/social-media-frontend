@@ -1,15 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Home.scss";
-import {Outlet} from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import { useDispatch } from "react-redux";
+import { getMyInfo } from "../../redux/slices/appConfigSlice";
 
 function Home() {
-  return <>
+  const dispatch = useDispatch();
 
-    <Navbar/>
+  useEffect(() => {
+    // as home loads get all info of user logged in
+    dispatch(getMyInfo());
+  }, []);
 
-    <Outlet />
-  </>;
+  return (
+    <>
+      <Navbar />
+      <Outlet />
+    </>
+  );
 }
 
 export default Home;
